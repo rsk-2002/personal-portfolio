@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My portfolio website to showcase the work I have done so far, the services I provide and all my professional life.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Django Portfolio website">
+    <meta name="author" content="Ravi Shanker Kushwaha">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <title>Ravi Shanker Kushwaha</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header class="section-header">
+        <nav class="container">
+            <ul class="navbar-list">
+                <li><a href="{% url 'home' %}" class="navbar-link home-link">Home</a></li>
+                <li><a href="#projects" class="navbar-link portfolio-link">Projects</a></li>
+                <li><a href="#skills" class="navbar-link service-link">Skills</a></li>
+                <li><a href="#contact" class="navbar-link contact-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+
+    <section class="section-hero">
+        <div class="container grid">
+            <div class="img">
+                <img src="{% static 'images/rsk.jpg' %}" alt="Ravi Shanker Kushwaha">
+            </div>
+
+            <div class="detail">
+                <span>Hello, I'm</span>
+                <h1>Ravi<br>Shanker<br>Kushwaha</h1>
+                <p>django dev | python intermediate</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Project Section -->
+
+    <section class="section-projects" id="projects">
+
+        <h2 class="text-center common-heading">My Projects</h2>
+        <div class="container grid">
+
+            {% for project in projects %}
+            <div class="project-wrapper">
+                <img src="{{project.thumbnail.url}}" alt="project-image">
+                <h3>{{project.title}}</h3>
+                <a href="{{project.source_code}}" target="_blank" class="source-code">Source code</a> or <a href="{{project.live_link}}" target="_blank">Open Live</a>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+    </section>
+
+
+    <!-- More About Me Section  -->
+
+    <!-- <section class="section-about">
+
+        <h2 class="text-center common-heading">More About Me</h2>
+
+        <div class="sub-container">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. tetur adipisicing elit. Debitis, sint cumque
+                fugit recusandae quis quas!
+            </p>
+            <p>Lorem ipsum dolor sit amet consectt. In cum, ullam, eaque vero debitis eveniet,
+                saepe tempore iure qui temporibus id cupiditate maiores ipsa eligendi. Sint corrupti reiciendis earum
+                ea!
+            </p>
+
+            <a href="#" class="btn">Download CV</a>
+        </div>
+
+
+    </section> -->
+
+    <!-- Skill Section -->
+
+    <section class="section-skills" id="skills">
+        <h2 class="text-center common-heading">My Skills</h2>
+
+        <div class="sub-container flex">
+
+            {% for skill in skills %}
+            <span class="skill">{{skill.title}}</span>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <!-- Contact Form -->
+
+    <section class="section-contact" id="contact">
+        <h2 class="text-center common-heading">Contact Form</h2>
+        <div class="sub-container">
+
+            <form action="" method="post" class="flex">
+                {% csrf_token %}
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" minlength="3" required placeholder="Your Nice Name">
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required placeholder="Your Email">
+
+                <label for="subject">Subject</label>
+                <input type="text" name="subject" id="subject" minlength="3" required placeholder="Subject">
+
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10"
+                    placeholder="Write your message here"></textarea>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer  -->
+
+    <footer>
+        <div class="container flex">
+
+            <div class="mail-div">
+                <!-- <ion-icon name="mail" class="icons"></ion-icon> -->
+                Mail to:
+                <a href="mailto:ravishankerk48@gmail.com">ravishankerk48@gmail.com</a>
+            </div>
+
+            <div class="social">
+                <a href="https://instagram.com/rsk_2002/" target="_blank">
+                    <img src="{% static 'images/logo-instagram.svg' %}" alt="Instagram">
+                    <!-- <ion-icon class="icons" name="logo-instagram"></ion-icon> -->
+                </a>
+                <a href="https://twitter.com/rsk__2002/" target="_blank">
+                    <img src="{% static 'images/logo-twitter.svg' %}" alt="logo-twitter">
+                    <!-- <ion-icon class="icons" name="logo-twitter"></ion-icon> -->
+                </a>
+                <a href="https://github.com/rsk-2002/" target="_blank">
+                    <img src="{% static 'images/logo-github.svg' %}" alt="logo-github">
+                    <!-- <ion-icon class="icons" name="logo-github"></ion-icon> -->
+                </a>
+                <a href="https://linkedin.com/in/rsk2002/" target="_blank">
+                    <img src="{% static 'images/logo-linkedin.svg' %}" alt="logo-linkedin">
+                    <!-- <ion-icon class="icons" name="logo-linkedin"></ion-icon> -->
+                </a>
+            </div>
+            <div class="copyrights">
+                <p>All rights reserved.<a href="https://twitter.com/rsk__2002/" target="_blank">Ravi Shanker Kushwaha</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- scripts  -->
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+</body>
+
+</html>
