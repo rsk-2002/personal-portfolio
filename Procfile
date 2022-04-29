@@ -1,0 +1,1 @@
+web: gunicorn personalfolio.wsgi --log-file -
